@@ -38,6 +38,7 @@ func IntegerToRoman(I int) string {
 		{400, "CD"},
 		{100, "C"},
 		{90, "XC"},
+		{50, "L"},
 		{40, "XL"},
 		{10, "X"},
 		{9, "IX"},
@@ -60,6 +61,10 @@ func IntegerToRoman(I int) string {
 	return roman.String()
 }
 
+const first = "Значения не могут быть больше 10"
+const second = "Значения не могут быть меньше 0"
+const third = "Значения должны быть одного типа"
+
 func main() {
 	fmt.Println("Введите выражение")
 	var x, y string
@@ -67,15 +72,19 @@ func main() {
 	fmt.Scan(&x, &operator1, &y)
 	x1, _ := strconv.Atoi(x)
 	y1, _ := strconv.Atoi(y)
-	if x1+y1 != 0 {
+	res1 := x1 + y1
+
+	if res1 > 0 {
 		result1 := x1 + y1
-		result2 := x1 - y1
-		result3 := x1 * y1
-		result4 := x1 / y1
+		result2 := x1 + y1
+		result3 := x1 + y1
+		result4 := x1 + y1
 		if x1 > 10 || y1 > 10 {
-			fmt.Println("Значения не могут быть больше 10")
+			panic(first)
 		} else if x1 < 0 || y1 < 0 {
-			fmt.Println("Значения не могут быть меньше 0")
+			panic(second)
+		} else if x1 == 0 || y1 == 0 {
+			panic(third)
 		} else if x1 > 0 && y1 > 0 && x1 < 11 && y1 < 11 && operator1 == "+" {
 			fmt.Println(result1)
 		} else if x1 > 0 && y1 > 0 && x1 < 11 && y1 < 11 && operator1 == "-" {
@@ -85,8 +94,7 @@ func main() {
 		} else if x1 > 0 && y1 > 0 && x1 < 11 && y1 < 11 && operator1 == "/" {
 			fmt.Println(result4)
 		}
-
-	} else if x1+y1 == 0 {
+	} else if res1 == 0 {
 		rome1 := RomanToInt(x)
 		rome2 := RomanToInt(y)
 		resultRome1 := rome1 + rome2
@@ -98,9 +106,11 @@ func main() {
 		int3 := IntegerToRoman(resultRome3)
 		int4 := IntegerToRoman(resultRome4)
 		if rome1 > 10 || rome2 > 10 {
-			fmt.Println("Значения не могут быть больше 10")
+			panic(first)
 		} else if rome1 < 0 || rome2 < 0 {
-			fmt.Println("Значения не могут быть меньше 0")
+			panic(second)
+		} else if x1 == 0 || y1 == 0 {
+			panic(third)
 		} else if rome1 > 0 && rome2 > 0 && rome1 < 11 && rome2 < 11 && operator1 == "+" {
 			fmt.Println(int1)
 		} else if rome1 > 0 && rome2 > 0 && rome1 < 11 && rome2 < 11 && operator1 == "-" {
@@ -110,6 +120,5 @@ func main() {
 		} else if rome1 > 0 && rome2 > 0 && rome1 < 11 && rome2 < 11 && operator1 == "/" {
 			fmt.Println(int4)
 		}
-
 	}
 }
