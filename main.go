@@ -87,11 +87,11 @@ func main() {
 			panic(third)
 		} else if x1 > 0 && y1 > 0 && x1 < 11 && y1 < 11 && operator1 == "+" {
 			fmt.Println(result1)
-		} else if x1 > 0 && y1 > 0 && x1 < 11 && y1 < 11 && operator1 == "-" {
+		} else if x1 > 0 && y1 > 0 && x1 <= 10 && y1 <= 10 && operator1 == "-" {
 			fmt.Println(result2)
-		} else if x1 > 0 && y1 > 0 && x1 < 11 && y1 < 11 && operator1 == "*" {
+		} else if x1 > 0 && y1 > 0 && x1 <= 10 && y1 <= 10 && operator1 == "*" {
 			fmt.Println(result3)
-		} else if x1 > 0 && y1 > 0 && x1 < 11 && y1 < 11 && operator1 == "/" {
+		} else if x1 > 0 && y1 > 0 && x1 <= 10 && y1 <= 10 && operator1 == "/" {
 			fmt.Println(result4)
 		}
 	} else if res1 == 0 {
@@ -109,15 +109,15 @@ func main() {
 			panic(first)
 		} else if rome1 < 0 || rome2 < 0 {
 			panic(second)
-		} else if x1 == 0 || y1 == 0 {
+		} else if rome1 == 0 || rome2 == 0 {
 			panic(third)
-		} else if rome1 > 0 && rome2 > 0 && rome1 < 11 && rome2 < 11 && operator1 == "+" {
+		} else if rome1 > 0 && rome2 > 0 && rome1 <= 10 && rome2 <= 10 && operator1 == "+" {
 			fmt.Println(int1)
-		} else if rome1 > 0 && rome2 > 0 && rome1 < 11 && rome2 < 11 && operator1 == "-" {
+		} else if rome1 > 0 && rome2 > 0 && rome1 <= 10 && rome2 <= 10 && operator1 == "-" {
 			fmt.Println(int2)
-		} else if rome1 > 0 && rome2 > 0 && rome1 < 11 && rome2 < 11 && operator1 == "*" {
+		} else if rome1 > 0 && rome2 > 0 && rome1 <= 10 && rome2 <= 10 && operator1 == "*" {
 			fmt.Println(int3)
-		} else if rome1 > 0 && rome2 > 0 && rome1 < 11 && rome2 < 11 && operator1 == "/" {
+		} else if rome1 > 0 && rome2 > 0 && rome1 <= 10 && rome2 <= 10 && operator1 == "/" {
 			fmt.Println(int4)
 		}
 	}
