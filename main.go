@@ -63,40 +63,46 @@ func IntegerToRoman(I int) string {
 
 const first = "Значения не могут быть больше 10"
 const second = "Значения не могут быть меньше 0"
-const third = "Значения должны быть одного типа"
+const third = "Значения не могут быть равны 0"
+const fourth = "Неправильный ввод операции"
+const fifth = "Результат римского выражения не может быть меньше 0"
+const sixth = "Результат не может быть меньше 1"
+const seventh = "Результат римского выражения не может быть равен 0"
+const eighth = "Значения должны быть одного типа"
+const ninth = "не правильный вид значений"
 
 func main() {
 	fmt.Println("Введите выражение")
-	var x, y string
-	var operator1 string
-	fmt.Scan(&x, &operator1, &y)
+	var x, op, y string
+	fmt.Scan(&x, &op, &y)
 	x1, _ := strconv.Atoi(x)
 	y1, _ := strconv.Atoi(y)
+	rome1 := RomanToInt(x)
+	rome2 := RomanToInt(y)
 	res1 := x1 + y1
-
-	if res1 > 0 {
+	if res1 > 0 && x1 != 0 && y1 != 0 {
 		result1 := x1 + y1
-		result2 := x1 + y1
-		result3 := x1 + y1
-		result4 := x1 + y1
+		result2 := x1 - y1
+		result3 := x1 * y1
+		result4 := x1 / y1
 		if x1 > 10 || y1 > 10 {
 			panic(first)
 		} else if x1 < 0 || y1 < 0 {
 			panic(second)
 		} else if x1 == 0 || y1 == 0 {
 			panic(third)
-		} else if x1 > 0 && y1 > 0 && x1 < 11 && y1 < 11 && operator1 == "+" {
+		} else if op != "+" && op != "-" && op != "*" && op != "/" {
+			panic(fourth)
+		} else if x1 > 0 && y1 > 0 && x1 <= 10 && y1 <= 10 && op == "+" {
 			fmt.Println(result1)
-		} else if x1 > 0 && y1 > 0 && x1 <= 10 && y1 <= 10 && operator1 == "-" {
+		} else if x1 > 0 && y1 > 0 && x1 <= 10 && y1 <= 10 && op == "-" {
 			fmt.Println(result2)
-		} else if x1 > 0 && y1 > 0 && x1 <= 10 && y1 <= 10 && operator1 == "*" {
+		} else if x1 > 0 && y1 > 0 && x1 <= 10 && y1 <= 10 && op == "*" {
 			fmt.Println(result3)
-		} else if x1 > 0 && y1 > 0 && x1 <= 10 && y1 <= 10 && operator1 == "/" {
+		} else if x1 > 0 && y1 > 0 && x1 <= 10 && y1 <= 10 && op == "/" {
 			fmt.Println(result4)
 		}
-	} else if res1 == 0 {
-		rome1 := RomanToInt(x)
-		rome2 := RomanToInt(y)
+	} else if res1 == 0 && rome1 > 0 && rome2 > 0 {
 		resultRome1 := rome1 + rome2
 		resultRome2 := rome1 - rome2
 		resultRome3 := rome1 * rome2
@@ -107,18 +113,30 @@ func main() {
 		int4 := IntegerToRoman(resultRome4)
 		if rome1 > 10 || rome2 > 10 {
 			panic(first)
-		} else if rome1 < 0 || rome2 < 0 {
-			panic(second)
-		} else if rome1 == 0 || rome2 == 0 {
-			panic(third)
-		} else if rome1 > 0 && rome2 > 0 && rome1 <= 10 && rome2 <= 10 && operator1 == "+" {
+		} else if op != "+" && op != "-" && op != "*" && op != "/" {
+			panic(fourth)
+		} else if rome1 < rome2 && op == "-" {
+			panic(fifth)
+		} else if rome1 < rome2 && op == "/" {
+			panic(sixth)
+		} else if rome1 == rome2 && op == "-" && rome1 != 0 && rome2 != 0 {
+			panic(seventh)
+		} else if rome1 > 0 && rome2 > 0 && rome1 <= 10 && rome2 <= 10 && op == "+" {
 			fmt.Println(int1)
-		} else if rome1 > 0 && rome2 > 0 && rome1 <= 10 && rome2 <= 10 && operator1 == "-" {
+		} else if rome1 > 0 && rome2 > 0 && rome1 <= 10 && rome2 <= 10 && op == "-" {
 			fmt.Println(int2)
-		} else if rome1 > 0 && rome2 > 0 && rome1 <= 10 && rome2 <= 10 && operator1 == "*" {
+		} else if rome1 > 0 && rome2 > 0 && rome1 <= 10 && rome2 <= 10 && op == "*" {
 			fmt.Println(int3)
-		} else if rome1 > 0 && rome2 > 0 && rome1 <= 10 && rome2 <= 10 && operator1 == "/" {
+		} else if rome1 > 0 && rome2 > 0 && rome1 <= 10 && rome2 <= 10 && op == "/" {
 			fmt.Println(int4)
 		}
+	} else if res1 < 0 || x1 < 0 || y1 < 0 {
+		panic(second)
+	} else if res1 == 0 && (x1 < 0 || y1 < 0) && op == "+" {
+		panic(second)
+	} else if (res1 == x1 || res1 == y1) && (x1 != 0 || y1 != 0) {
+		panic(eighth)
+	} else if res1 == 0 && rome1 == 0 && rome2 == 0 {
+		panic(ninth)
 	}
 }
