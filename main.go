@@ -74,7 +74,10 @@ const ninth = "не правильный вид значений"
 func main() {
 	fmt.Println("Введите выражение")
 	var x, op, y string
-	fmt.Scan(&x, &op, &y)
+	_, err := fmt.Scanln(&x, &op, &y)
+	if err != nil {
+		panic(fourth)
+	}
 	x1, _ := strconv.Atoi(x)
 	y1, _ := strconv.Atoi(y)
 	rome1 := RomanToInt(x)
