@@ -135,15 +135,13 @@ func main() {
 		}
 	} else if res1 < 0 || x1 < 0 || y1 < 0 {
 		panic(second)
-	} else if res1 == 0 && (x1 < 0 || y1 < 0) && op == "+" {
-		panic(second)
-	} else if (res1 == x1 || res1 == y1) && (x1 == 0 || y1 == 0) && op == "*" {
-		panic(third)
-	} else if (res1 == x1 || res1 == y1) && (x1 == 0 || y1 == 0) && op == "/" {
-		panic(third)
-	} else if (res1 == x1 || res1 == y1) && (x1 != 0 || y1 != 0) {
+	} else if res1 > 0 && (x1 == 0 || y1 == 0) && (rome1 > 0 || rome2 > 0) {
 		panic(eighth)
-	} else if res1 == 0 && rome1 == 0 && rome2 == 0 {
+	} else if res1 > 0 && (x1 == 0 || y1 == 0) && (rome1 == 0 || rome2 == 0) {
+		panic(third)
+	} else if res1 == 0 && (x1 == 0 || y1 == 0) && (rome1 > 0 || rome2 > 0) {
+		panic(eighth)
+	} else if res1 == 0 && x1 == 0 && y1 == 0 && rome1 == 0 && rome2 == 0 {
 		panic(ninth)
 	}
 }
